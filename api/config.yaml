@@ -1,7 +1,7 @@
 configurationset:
   - configuration:
       name: postgresql_config
-      uri: postgresql://ep-wild-haze-a53e4ib1.us-east-2.aws.neon.tech/neondb?user=Savinvadim1312&password=rpQacoE6wPT0
+      uri: postgresql://ep-frosty-hat-a5ahmkzp.us-east-2.aws.neon.tech/neondb?user=hello.rokastech&password=m7UZNKTi4DFp
   - configuration:
       name: twelvedata
       Authorization: apikey 8a31c934dd70485190b4148cac3e2eb0
