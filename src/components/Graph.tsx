@@ -15,6 +15,8 @@ const Graph = () => {
     points[points.length - 1]
   );
 
+  // https://api.twelvedata.com/quote?symbol=AAPL,IBM&apikey=8a31c934dd70485190b4148cac3e2eb0&source=docs
+
   const onPointSelected = (point: GraphPoint) => {
     setSelectedPoint(point);
   };
