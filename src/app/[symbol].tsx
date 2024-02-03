@@ -2,6 +2,7 @@ import { View, Text } from '@/src/components/Themed';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import top5 from '../../assets/data/top5.json'
 import StockListItem from '../components/StockListItem';
+import Graph from "@/src/components/Graph";
 // import Graph from '../components/Graph';
 
 const StockDetails = () => {
@@ -19,7 +20,7 @@ const StockDetails = () => {
         options={{ title: stock.symbol, headerBackTitleVisible: false }}
       />
       <StockListItem stock={stock} />
-      {/*<Graph />*/}
+      <Graph />
     </View>
   );
 };
