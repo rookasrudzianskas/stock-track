@@ -6,7 +6,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { useMutation, gql } from '@apollo/client';
 
-
 type Stock = {
   name: string;
   symbol: string;
@@ -18,15 +17,25 @@ type StockListItem = {
   stock: Stock;
 };
 
+const mutation = gql`
+    mutation MyMutation($symbol: String!, $user_id: String!) {
+        insertFavorites(symbol: $symbol, user_id: $user_id) {
+            id
+            symbol
+            user_id
+        }
+    }
+`;
+
 export default function StockListItem({ stock }: StockListItem) {
-  // const [runMutation] = useMutation(mutation, {
-  //   variables: { user_id: 'vadim', symbol: stock.symbol },
-  // });
+  const [runMutation] = useMutation(mutation, {
+    variables: { user_id: 'vadim', symbol: stock.symbol },
+  });
 
   const change = Number.parseFloat(stock.percent_change);
 
   const onFavoritesPressed = () => {
-    // runMutation();
+    runMutation();
   };
 
   return (

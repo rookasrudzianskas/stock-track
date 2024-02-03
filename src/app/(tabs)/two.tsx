@@ -1,13 +1,54 @@
-import { Text, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+
+import { Text, View } from '@/src/components/Themed';
+import { Stack } from 'expo-router';
+import { useQuery, gql } from '@apollo/client';
+import StockListItem from "@/src/components/StockListItem";
+
+const query = gql`
+    query MyQuery($user_id: String!) {
+        favoritesByUser_id(user_id: $user_id) {
+            id
+            quote {
+                name
+                symbol
+                close
+                percent_change
+            }
+        }
+    }
+`;
 
 export default function TabTwoScreen() {
+  const { loading, error, data } = useQuery(query, {
+    variables: { user_id: 'vadim' },
+  });
+
+  if (loading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Error</Text>;
+  }
+
+  const stocks = data.favoritesByUser_id.map((fav) => fav.quote);
+
   return (
-    <View className="bg-gray-100 flex-1 p-3">
-      <View className="flex-1 bg-white rounded-xl pt-6 items-center justify-center">
-        <Text className="text-2xl uppercase font-bold text-gray-700 text-center">
-          Tab two
-        </Text>
-      </View>
+    <View style={styles.container}>
+      <Stack.Screen options={{ title: 'Favorites' }} />
+
+      <FlatList
+        data={stocks}
+        renderItem={({ item }) => <StockListItem stock={item} />}
+        contentContainerStyle={{ gap: 20, padding: 10 }}
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
