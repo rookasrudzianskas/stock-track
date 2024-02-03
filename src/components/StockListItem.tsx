@@ -41,6 +41,7 @@ export default function StockListItem({ stock }: StockListItem) {
   return (
     <Link href={`/${stock.symbol}`} asChild>
       <Pressable style={styles.container}>
+
         {/* Left container */}
         <View style={{ flex: 1, gap: 5 }}>
           <Text style={styles.symbol}>
