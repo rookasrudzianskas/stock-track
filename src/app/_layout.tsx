@@ -8,6 +8,8 @@ import { View, StyleSheet } from "react-native";
 import { colorScheme, useColorScheme } from "nativewind";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import {DarkTheme, DefaultTheme, ThemeProvider} from "@react-navigation/native";
+import {ApolloProvider} from "@apollo/client";
+import client from "@/src/apollo/client";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -58,12 +60,14 @@ function RootLayoutNav() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        </Stack>
-      </ThemeProvider>
+      <ApolloProvider client={client}>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          </Stack>
+        </ThemeProvider>
+      </ApolloProvider>
     </GestureHandlerRootView>
   );
 }
