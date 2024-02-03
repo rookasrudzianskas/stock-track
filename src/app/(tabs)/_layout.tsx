@@ -25,21 +25,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <Feather
-                    name="info"
-                    size={25}
-                    color={"black"}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>,
         }}
       />
       <Tabs.Screen

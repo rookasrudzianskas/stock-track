@@ -1,20 +1,29 @@
-// tab one screen
-import { vars, useColorScheme } from "nativewind";
-import { Pressable, Text, View, PressableProps } from "react-native";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import {Pressable, Text, View, PressableProps, FlatList, StyleSheet} from "react-native";
 import React from "react";
+import StockListItem from "@/src/components/StockListItem";
+import top5 from '../../../assets/data/top5.json'
+import { Stack } from 'expo-router';
 
 const TabOneScreen = () => {
+  const stocks = Object.values(top5);
+
   return (
-    <View className="bg-gray-100 flex-1 p-3">
-      <View className="flex-1 bg-white rounded-xl pt-6 items-center justify-center">
-        <Text className="text-2xl uppercase font-bold text-gray-700 text-center">
-          Nativewind v4 starter
-        </Text>
-      </View>
+    <View className="flex flex-1 bg-white">
+      <Stack.Screen options={{ title: 'Stocks' }} />
+
+      <FlatList
+        data={stocks}
+        renderItem={({ item }) => <StockListItem stock={item} />}
+        contentContainerStyle={{ gap: 20, padding: 10 }}
+      />
     </View>
   );
 };
 
 export default TabOneScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

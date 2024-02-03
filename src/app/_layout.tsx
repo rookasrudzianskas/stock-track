@@ -5,6 +5,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { vars } from "nativewind";
 import { memo, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
+import { colorScheme, useColorScheme } from "nativewind";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -24,6 +25,7 @@ export default memo(function RootLayout() {
     SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
   });
+
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
@@ -45,10 +47,13 @@ export default memo(function RootLayout() {
 
 const theme = vars({
   "--theme-fg": "black",
-  "--theme-bg": "rgba(230,230,230,1)",
+  "--theme-bg": "black",
 });
 
 function RootLayoutNav() {
+  const { setColorScheme } = useColorScheme();
+  setColorScheme("light");
+
   return (
     <View style={[theme, StyleSheet.absoluteFill]}>
       <Stack>
